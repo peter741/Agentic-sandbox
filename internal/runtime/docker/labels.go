@@ -1,6 +1,7 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package docker
 
-const LabelNamespace = "io.github.1996fanrui.agents-sandbox"
+const LabelNamespace = "io.github.peter741.agentic-sandbox"
 
 const (
 	LabelSandboxID              = LabelNamespace + ".sandbox-id"

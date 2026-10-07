@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
@@ -6,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
-	"github.com/1996fanrui/agents-sandbox/internal/profile"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
+	"github.com/peter741/Agentic-sandbox/internal/profile"
 )
 
 func TestExpandHomePath(t *testing.T) {

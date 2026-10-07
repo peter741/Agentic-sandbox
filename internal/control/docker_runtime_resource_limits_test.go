@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
@@ -8,9 +9,9 @@ import (
 	"sync"
 	"testing"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
 	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/network"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
 	"google.golang.org/grpc/codes"
 )
 

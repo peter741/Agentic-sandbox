@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package docker
 
 import "testing"
@@ -10,7 +11,7 @@ func TestRuntimeLabelsUseReverseDNSNamespace(t *testing.T) {
 	if sandboxLabels[LabelComponent] != "primary" {
 		t.Fatalf("unexpected sandbox component label: %#v", sandboxLabels)
 	}
-	if LabelNamespace != "io.github.1996fanrui.agents-sandbox" {
+	if LabelNamespace != "io.github.peter741.agentic-sandbox" {
 		t.Fatalf("unexpected label namespace: %s", LabelNamespace)
 	}
 

@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
@@ -7,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
 	bbolt "go.etcd.io/bbolt"
 	"google.golang.org/protobuf/proto"
 )

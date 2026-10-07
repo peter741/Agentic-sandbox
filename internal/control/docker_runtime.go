@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
@@ -10,12 +11,12 @@ import (
 	"sync"
 	"time"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
-	runtimedocker "github.com/1996fanrui/agents-sandbox/internal/runtime/docker"
 	"github.com/docker/docker/api/types/events"
 	"github.com/docker/docker/api/types/filters"
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/errdefs"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
+	runtimedocker "github.com/peter741/Agentic-sandbox/internal/runtime/docker"
 )
 
 type runtimeBackend interface {

@@ -1,0 +1,12 @@
+Agentic Sandbox
+Repository: https://github.com/peter741/Agentic-sandbox
+
+This project includes code and documentation from Agents Sandbox:
+https://github.com/1996fanrui/agents-sandbox
+Upstream license: Apache License, Version 2.0 (see LICENSE).
+Original authorship and applicable notices remain with the upstream authors.
+This derivative is independently maintained, not an official upstream release.
+
+Initial derivative changes add setup diagnostics, regression tests, contribution
+documentation, explicit provenance, and repository configuration.
+See CHANGELOG.md and docs/provenance.md for the scope of changes.

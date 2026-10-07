@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
@@ -8,7 +9,7 @@ import (
 	"path/filepath"
 	"slices"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/durationpb"

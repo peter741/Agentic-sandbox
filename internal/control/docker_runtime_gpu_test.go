@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
@@ -16,12 +17,12 @@ import (
 	"testing"
 	"time"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
 	"github.com/docker/docker/api/types/container"
 	imagetypes "github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/api/types/network"
 	"github.com/docker/docker/client"
 	"github.com/docker/docker/errdefs"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
 )
 
 type capturedGPUCreate struct {

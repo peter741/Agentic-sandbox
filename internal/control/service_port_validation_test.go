@@ -1,10 +1,11 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
 	"strings"
 	"testing"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
 )
 
 func TestValidateCreateSpec_PortMapping(t *testing.T) {

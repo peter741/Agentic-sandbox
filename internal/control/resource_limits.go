@@ -1,10 +1,11 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
 	"fmt"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
-	"github.com/1996fanrui/agents-sandbox/internal/control/reslimits"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
+	"github.com/peter741/Agentic-sandbox/internal/control/reslimits"
 )
 
 // buildLimits re-parses every resource-limit string on a CreateSpec into the

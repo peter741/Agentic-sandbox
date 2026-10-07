@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
@@ -8,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	runtimedocker "github.com/1996fanrui/agents-sandbox/internal/runtime/docker"
+	runtimedocker "github.com/peter741/Agentic-sandbox/internal/runtime/docker"
 	ignore "github.com/sabhiram/go-gitignore"
 )
 

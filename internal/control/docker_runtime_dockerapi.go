@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package control
 
 import (
@@ -13,7 +14,6 @@ import (
 	"syscall"
 	"time"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
 	"github.com/docker/docker/api/types/container"
 	imagetypes "github.com/docker/docker/api/types/image"
 	"github.com/docker/docker/api/types/mount"
@@ -21,6 +21,7 @@ import (
 	"github.com/docker/docker/errdefs"
 	"github.com/docker/docker/pkg/stdcopy"
 	nat "github.com/docker/go-connections/nat"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
