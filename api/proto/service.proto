@@ -1,0 +1,308 @@
+syntax = "proto3";
+
+package agbox.v1;
+
+option go_package = "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1;agboxv1";
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+
+service SandboxService {
+  rpc Ping(PingRequest) returns (PingResponse);
+  rpc CreateSandbox(CreateSandboxRequest) returns (CreateSandboxResponse);
+  rpc GetSandbox(GetSandboxRequest) returns (GetSandboxResponse);
+  rpc ListSandboxes(ListSandboxesRequest) returns (ListSandboxesResponse);
+  rpc ResumeSandbox(ResumeSandboxRequest) returns (AcceptedResponse);
+  rpc StopSandbox(StopSandboxRequest) returns (AcceptedResponse);
+  rpc DeleteSandbox(DeleteSandboxRequest) returns (AcceptedResponse);
+  rpc DeleteSandboxes(DeleteSandboxesRequest) returns (DeleteSandboxesResponse);
+  rpc SubscribeSandboxEvents(SubscribeSandboxEventsRequest) returns (stream SandboxEvent);
+  rpc CreateExec(CreateExecRequest) returns (CreateExecResponse);
+  rpc CancelExec(CancelExecRequest) returns (AcceptedResponse);
+  rpc GetExec(GetExecRequest) returns (GetExecResponse);
+  rpc ListActiveExecs(ListActiveExecsRequest) returns (ListActiveExecsResponse);
+}
+
+enum SandboxState {
+  SANDBOX_STATE_UNSPECIFIED = 0;
+  SANDBOX_STATE_PENDING = 1;
+  SANDBOX_STATE_READY = 2;
+  SANDBOX_STATE_FAILED = 3;
+  SANDBOX_STATE_STOPPED = 4;
+  SANDBOX_STATE_DELETING = 5;
+  SANDBOX_STATE_DELETED = 6;
+}
+
+enum EventType {
+  EVENT_TYPE_UNSPECIFIED = 0;
+  SANDBOX_ACCEPTED = 1;
+  SANDBOX_PREPARING = 2;
+  SANDBOX_READY = 3;
+  SANDBOX_FAILED = 4;
+  SANDBOX_STOP_REQUESTED = 5;
+  SANDBOX_STOPPED = 6;
+  SANDBOX_DELETE_REQUESTED = 7;
+  SANDBOX_DELETED = 8;
+  EXEC_STARTED = 9;
+  EXEC_FINISHED = 10;
+  EXEC_FAILED = 11;
+  EXEC_CANCELLED = 12;
+  COMPANION_CONTAINER_READY = 13;
+  COMPANION_CONTAINER_FAILED = 14;
+}
+
+enum ExecState {
+  EXEC_STATE_UNSPECIFIED = 0;
+  EXEC_STATE_RUNNING = 1;
+  EXEC_STATE_FINISHED = 2;
+  EXEC_STATE_FAILED = 3;
+  EXEC_STATE_CANCELLED = 4;
+}
+
+message PingRequest {}
+
+message PingResponse {
+  string version = 1;
+  string daemon = 2;
+}
+
+message MountSpec {
+  string source = 1;
+  string target = 2;
+  bool writable = 3;
+}
+
+message CopySpec {
+  string source = 1;
+  string target = 2;
+  repeated string exclude_patterns = 3;
+}
+
+enum PortProtocol {
+  PORT_PROTOCOL_TCP = 0;
+  PORT_PROTOCOL_UDP = 1;
+  PORT_PROTOCOL_SCTP = 2;
+}
+
+message PortMapping {
+  uint32 container_port = 1;
+  uint32 host_port = 2;
+  PortProtocol protocol = 3;
+}
+
+message HealthcheckConfig {
+  repeated string test = 1;
+  google.protobuf.Duration interval = 2;
+  google.protobuf.Duration timeout = 3;
+  uint32 retries = 4;
+  google.protobuf.Duration start_period = 5;
+  google.protobuf.Duration start_interval = 6;
+}
+
+message CompanionContainerSpec {
+  string name = 1;
+  string image = 2;
+  map<string, string> envs = 3;
+  HealthcheckConfig healthcheck = 4;
+  repeated string post_start_on_primary = 5;
+  // Overrides Docker Cmd for the companion container. When unset, the image's
+  // built-in CMD applies.
+  // Must be long-lived / long-running — process exit => container exit =>
+  // sandbox unusable until restart.
+  // entrypoint is intentionally not exposed to preserve the image
+  // entrypoint.sh UID/GID + gosu drop-privilege behavior.
+  repeated string command = 6;
+  // Same semantics as CreateSpec.cpu_limit, scoped to this companion container.
+  string cpu_limit = 7;
+  // Same semantics as CreateSpec.memory_limit, scoped to this companion container.
+  string memory_limit = 8;
+  // Same semantics as CreateSpec.disk_limit, scoped to this companion container.
+  string disk_limit = 9;
+}
+
+message CreateSpec {
+  string image = 1;
+  repeated MountSpec mounts = 2;
+  repeated CopySpec copies = 3;
+  repeated string builtin_tools = 4;
+  repeated CompanionContainerSpec companion_containers = 5;
+  map<string, string> labels = 6;
+  map<string, string> envs = 7;
+  // Per-sandbox idle TTL override. nil = use global daemon default; Duration(0) = disable idle stop.
+  google.protobuf.Duration idle_ttl = 8;
+  repeated PortMapping ports = 9;
+  // Overrides Docker Cmd for the primary container. When unset, the daemon
+  // uses its built-in sleep-loop default.
+  // Must be long-lived / long-running — process exit => container exit =>
+  // sandbox unusable until restart.
+  // entrypoint is intentionally not exposed to preserve the image
+  // entrypoint.sh UID/GID + gosu drop-privilege behavior.
+  repeated string command = 10;
+  // Docker --cpus style, e.g. "2", "0.5". "" = unlimited.
+  // Applies to the primary container.
+  string cpu_limit = 11;
+  // Docker --memory style, e.g. "4g", "512m". "" = unlimited.
+  // Applies to the primary container.
+  string memory_limit = 12;
+  // Docker --storage-opt size= style, e.g. "10g". "" = unlimited.
+  // Applies to the primary container.
+  string disk_limit = 13;
+  // Docker --gpus style device request. "" = no GPU access; "all" = request
+  // all NVIDIA GPUs for the primary container. This is device access, not a
+  // VRAM or compute quota.
+  string gpus = 14;
+}
+
+message SandboxHandle {
+  string sandbox_id = 1;
+  SandboxState state = 2;
+  uint64 last_event_sequence = 3;
+  repeated CompanionContainerSpec companion_containers = 4;
+  map<string, string> labels = 5;
+  google.protobuf.Timestamp created_at = 6;
+  string image = 7;
+  string error_code = 8;
+  string error_message = 9;
+  google.protobuf.Timestamp state_changed_at = 10;
+}
+
+message SandboxPhaseDetails {
+  string phase = 1;
+  string error_code = 2;
+  string error_message = 3;
+  string reason = 4;
+}
+
+message ExecEventDetails {
+  string exec_id = 1;
+  int32 exit_code = 2;
+  ExecState exec_state = 3;
+  string error_code = 4;
+  string error_message = 5;
+}
+
+message CompanionContainerEventDetails {
+  string name = 1;
+  string error_code = 2;
+  string error_message = 3;
+}
+
+message SandboxEvent {
+  string event_id = 1;
+  uint64 sequence = 2;
+  string sandbox_id = 3;
+  EventType event_type = 4;
+  google.protobuf.Timestamp occurred_at = 5;
+  bool replay = 6;
+  bool snapshot = 7;
+  SandboxState sandbox_state = 8;
+  oneof details {
+    SandboxPhaseDetails sandbox_phase = 9;
+    ExecEventDetails exec = 10;
+    CompanionContainerEventDetails companion_container = 11;
+  }
+}
+
+message ExecStatus {
+  string exec_id = 1;
+  string sandbox_id = 2;
+  ExecState state = 3;
+  repeated string command = 4;
+  string cwd = 5;
+  map<string, string> env_overrides = 6;
+  int32 exit_code = 7;
+  string error = 8;
+  uint64 last_event_sequence = 9;
+}
+
+message CreateSandboxRequest {
+  CreateSpec create_spec = 1;
+  string sandbox_id = 2;
+  bytes config_yaml = 3;
+}
+
+message CreateSandboxResponse {
+  SandboxHandle sandbox = 1;
+}
+
+message GetSandboxRequest {
+  string sandbox_id = 1;
+}
+
+message GetSandboxResponse {
+  SandboxHandle sandbox = 1;
+}
+
+message ListSandboxesRequest {
+  bool include_deleted = 1;
+  map<string, string> label_selector = 2;
+}
+
+message ListSandboxesResponse {
+  repeated SandboxHandle sandboxes = 1;
+}
+
+message ResumeSandboxRequest {
+  string sandbox_id = 1;
+}
+
+message StopSandboxRequest {
+  string sandbox_id = 1;
+}
+
+message DeleteSandboxRequest {
+  string sandbox_id = 1;
+}
+
+message DeleteSandboxesRequest {
+  map<string, string> label_selector = 1;
+}
+
+message DeleteSandboxesResponse {
+  repeated string deleted_sandbox_ids = 1;
+  uint32 deleted_count = 2;
+}
+
+message AcceptedResponse {
+  bool accepted = 1;
+}
+
+message SubscribeSandboxEventsRequest {
+  string sandbox_id = 1;
+  uint64 from_sequence = 2;
+  bool include_current_snapshot = 3;
+}
+
+message CreateExecRequest {
+  string sandbox_id = 1;
+  repeated string command = 2;
+  string cwd = 3;
+  map<string, string> env_overrides = 4;
+  string exec_id = 5;
+}
+
+message CreateExecResponse {
+  string exec_id = 1;
+  string stdout_log_path = 2;
+  string stderr_log_path = 3;
+}
+
+message CancelExecRequest {
+  string exec_id = 1;
+}
+
+message GetExecRequest {
+  string exec_id = 1;
+}
+
+message GetExecResponse {
+  ExecStatus exec = 1;
+}
+
+message ListActiveExecsRequest {
+  optional string sandbox_id = 1;
+}
+
+message ListActiveExecsResponse {
+  repeated ExecStatus execs = 1;
+}
