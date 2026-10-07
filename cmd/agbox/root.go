@@ -1,3 +1,4 @@
+// Agentic Sandbox modification: register read-only setup diagnostics.
 package main
 
 import (
@@ -6,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/1996fanrui/agents-sandbox/internal/version"
+	"github.com/peter741/Agentic-sandbox/internal/version"
 	"github.com/spf13/cobra"
 )
 
@@ -45,6 +46,8 @@ func run(
 
 	rootCmd.AddCommand(
 		newVersionCommand(),
+		newDoctorCommand(),
+		newPreflightCommand(),
 		newSandboxCommand(),
 		newExecCommand(),
 		newAgentCommand(),

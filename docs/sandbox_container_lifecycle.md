@@ -13,7 +13,7 @@ This document describes the runtime lifecycle contract owned by `agents-sandbox`
 | Exec output artifacts | Files under the configured artifact root |
 | Exec log bind-mount | `{ArtifactOutputRoot}/{sandbox_id}/` → `/var/log/agents-sandbox/` (rw); each exec writes `{exec_id}.stdout.log` and `{exec_id}.stderr.log` |
 
-Docker object labels use the reverse-DNS namespace `io.github.1996fanrui.agents-sandbox.*`. User-defined sandbox labels are propagated with the prefix `io.github.1996fanrui.agents-sandbox.user.<key>`. Historical `sandbox_id` and `exec_id` values are reserved in a persistent registry before accepting create operations, preventing accidental ID reuse after daemon restart.
+Docker object labels use the reverse-DNS namespace `io.github.peter741.agentic-sandbox.*`. User-defined sandbox labels are propagated with the prefix `io.github.peter741.agentic-sandbox.user.<key>`. Historical `sandbox_id` and `exec_id` values are reserved in a persistent registry before accepting create operations, preventing accidental ID reuse after daemon restart.
 
 ## CLI Agent Modes
 

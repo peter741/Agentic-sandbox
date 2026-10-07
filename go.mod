@@ -1,4 +1,4 @@
-module github.com/1996fanrui/agents-sandbox
+module github.com/peter741/Agentic-sandbox
 
 go 1.25.0
 

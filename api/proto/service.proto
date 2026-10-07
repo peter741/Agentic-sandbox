@@ -1,8 +1,9 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 syntax = "proto3";
 
 package agbox.v1;
 
-option go_package = "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1;agboxv1";
+option go_package = "github.com/peter741/Agentic-sandbox/api/generated/agboxv1;agboxv1";
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";

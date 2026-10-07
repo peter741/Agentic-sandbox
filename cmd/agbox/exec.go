@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package main
 
 import (
@@ -7,8 +8,8 @@ import (
 	"io"
 	"time"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
-	"github.com/1996fanrui/agents-sandbox/sdk/go/rawclient"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
+	"github.com/peter741/Agentic-sandbox/sdk/go/rawclient"
 )
 
 // execReadClient is the interface for exec point-in-time read operations.

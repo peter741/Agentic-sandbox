@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package main
 
 import (
@@ -12,9 +13,9 @@ import (
 	"syscall"
 	"time"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
-	"github.com/1996fanrui/agents-sandbox/internal/platform"
-	"github.com/1996fanrui/agents-sandbox/sdk/go/rawclient"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
+	"github.com/peter741/Agentic-sandbox/internal/platform"
+	"github.com/peter741/Agentic-sandbox/sdk/go/rawclient"
 	"golang.org/x/term"
 	"google.golang.org/protobuf/types/known/durationpb"
 )

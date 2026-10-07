@@ -97,7 +97,7 @@ The runtime must execute under a non-root user inside the sandbox. Bind-mounted 
 
 ## Cleanup and Ownership
 
-`agents-sandbox` owns cleanup for resources carrying the `io.github.1996fanrui.agents-sandbox.*` label namespace: primary containers, companion containers, dedicated networks, and event/artifact files.
+`agents-sandbox` owns cleanup for resources carrying the `io.github.peter741.agentic-sandbox.*` label namespace: primary containers, companion containers, dedicated networks, and event/artifact files.
 
 Docker objects without these labels are never inspected, stopped, or removed by the daemon. Ownership must be derivable from runtime state plus namespaced labels without requiring an external product database snapshot. Cleanup continues on daemon-owned contexts rather than request-scoped cancellation.
 

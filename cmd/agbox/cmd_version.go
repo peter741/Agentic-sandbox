@@ -1,11 +1,12 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package main
 
 import (
 	"fmt"
 
-	"github.com/1996fanrui/agents-sandbox/internal/platform"
-	"github.com/1996fanrui/agents-sandbox/internal/version"
-	"github.com/1996fanrui/agents-sandbox/sdk/go/rawclient"
+	"github.com/peter741/Agentic-sandbox/internal/platform"
+	"github.com/peter741/Agentic-sandbox/internal/version"
+	"github.com/peter741/Agentic-sandbox/sdk/go/rawclient"
 	"github.com/spf13/cobra"
 )
 

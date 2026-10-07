@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package main
 
 import (
@@ -7,8 +8,8 @@ import (
 	"os"
 	"strings"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
-	"github.com/1996fanrui/agents-sandbox/internal/profile"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
+	"github.com/peter741/Agentic-sandbox/internal/profile"
 )
 
 var paseoConfigYaml = `image: ghcr.io/agents-sandbox/paseo-runtime:latest

@@ -1,5 +1,11 @@
 # Release Process
 
+This is inherited release guidance, not evidence of published derivative
+artifacts. No publishing workflow is enabled. Create and verify your own
+release assets, package names, registry permissions, and ownership before
+publishing. Existing PyPI and GHCR links below refer to upstream dependencies.
+
+
 ## Release Flow
 
 ```mermaid

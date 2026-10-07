@@ -52,7 +52,7 @@ flowchart TB
 | **Filesystem** | Explicit-only ingress | Only declared `mounts`, `copies`, and `builtin_tools` (host credential and cache mounts like `claude`, `git`, `uv`) enter the sandbox. Symlink sources and path traversal are rejected. See [Container Dependency Strategy](container_dependency_strategy.md). |
 | **Process** | Non-root user + init process | `HOST_UID`/`HOST_GID` align container user with host identity. `Init: true` handles signal forwarding and zombie reaping. |
 | **Docker access** | Daemon-mediated only | Sandboxes have no Docker socket. All Docker operations go through the daemon's structured API client. |
-| **Ownership** | Namespaced labels | Daemon only manages objects under `io.github.1996fanrui.agents-sandbox.*`. User labels are prefixed to prevent collision. See [Sandbox Container Lifecycle](sandbox_container_lifecycle.md). |
+| **Ownership** | Namespaced labels | Daemon only manages objects under `io.github.peter741.agentic-sandbox.*`. User labels are prefixed to prevent collision. See [Sandbox Container Lifecycle](sandbox_container_lifecycle.md). |
 | **Cleanup** | Automatic + idempotent | Sandbox delete removes all resources; STOPPED sandboxes exceeding [`runtime.cleanup_ttl`](configuration_reference.md) are auto-deleted. Failed materialization triggers background cleanup. |
 
 ## Platform-Specific Network Strategy

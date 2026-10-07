@@ -5,10 +5,18 @@ Prerequisites: Docker and curl.
 ## Install
 
 ```bash
-curl -fsSL https://agents-sandbox.com/install.sh | bash
+git clone https://github.com/peter741/Agentic-sandbox.git
+cd Agentic-sandbox
+mkdir -p .build
+go build -buildvcs=false -o .build/agbox ./cmd/agbox
+go build -buildvcs=false -o .build/agboxd ./cmd/agboxd
+.build/agbox preflight --workspace .
 ```
 
-This installs `agboxd` (daemon) and `agbox` (CLI), then starts the daemon as a user service.
+Review the local service setup in `scripts/install_local.sh` before running it.
+Docker and a configured daemon are required for live agents. No derivative
+release binaries or images have been published. The release installer targets
+this repository, but requires matching release assets before it can be used.
 
 ## Run an AI Agent in a Sandbox
 

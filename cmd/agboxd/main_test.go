@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package main
 
 import (
@@ -12,8 +13,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/1996fanrui/agents-sandbox/internal/control"
-	"github.com/1996fanrui/agents-sandbox/internal/platform"
+	"github.com/peter741/Agentic-sandbox/internal/control"
+	"github.com/peter741/Agentic-sandbox/internal/platform"
 )
 
 func TestFixedPlatformPaths(t *testing.T) {

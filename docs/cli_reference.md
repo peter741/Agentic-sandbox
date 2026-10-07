@@ -1,3 +1,4 @@
+<!-- Agentic Sandbox modification: add setup diagnostics. -->
 # CLI Reference
 
 The AgentsSandbox CLI (`agbox`) communicates with the daemon via gRPC over a Unix socket. Built on [Cobra](https://github.com/spf13/cobra) — every command supports `--help` / `-h`.
@@ -41,6 +42,16 @@ agbox completion
 # Print usage for any command
 agbox sandbox create --help
 ```
+
+## Setup Diagnostics
+
+```bash
+agbox doctor [--json] [--timeout 5s] [--workspace /path/to/project]
+```
+
+Exit 0 means no check failed (warnings can remain); 1 means a check or output
+failed; 2 means invalid usage. Each probe has its own positive timeout.
+These checks do not certify security or authentication. See [doctor.md](doctor.md).
 
 ## Sandbox Commands
 
@@ -198,3 +209,10 @@ agbox paseo url <sandbox_id>
 | `N` | `exec run`: propagated exit code of the executed command |
 | `125` | `exec run`: exec failed to run or unexpected terminal state |
 | `128+N` | `agent`: process killed by signal N |
+
+## Workspace preflight (derivative addition)
+
+`agbox preflight --workspace PATH [--json] [--max-entries 10000]` reviews
+metadata for potential workspace credential exposure without Docker. Defaults
+to the current directory. Exit 0: complete/no findings; 1: review required or
+incomplete; 2: usage/path policy error. See [preflight](preflight.md).
