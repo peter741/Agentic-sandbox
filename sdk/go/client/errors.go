@@ -1,6 +1,7 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package client
 
-import "github.com/1996fanrui/agents-sandbox/sdk/go/rawclient"
+import "github.com/peter741/Agentic-sandbox/sdk/go/rawclient"
 
 // Type aliases so callers can use errors.As without importing rawclient directly.
 type SandboxClientError = rawclient.SandboxClientError

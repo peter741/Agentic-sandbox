@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package client
 
 import (
@@ -6,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	agboxv1 "github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
-	"github.com/1996fanrui/agents-sandbox/sdk/go/rawclient"
+	agboxv1 "github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
+	"github.com/peter741/Agentic-sandbox/sdk/go/rawclient"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 

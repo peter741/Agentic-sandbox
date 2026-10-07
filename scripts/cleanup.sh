@@ -17,7 +17,7 @@ systemctl --user kill agboxd 2>/dev/null || true
 systemctl --user stop agboxd 2>/dev/null || true
 
 echo "==> Removing Docker containers..."
-CONTAINERS=$(docker ps -aq --filter "label=io.github.1996fanrui.agents-sandbox.sandbox-id" 2>/dev/null)
+CONTAINERS=$(docker ps -aq --filter "label=io.github.peter741.agentic-sandbox.sandbox-id" 2>/dev/null)
 if [ -n "$CONTAINERS" ]; then
     docker rm -f $CONTAINERS
 else

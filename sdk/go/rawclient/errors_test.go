@@ -1,10 +1,11 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package rawclient
 
 import (
 	"errors"
 	"testing"
 
-	"github.com/1996fanrui/agents-sandbox/internal/control"
+	"github.com/peter741/Agentic-sandbox/internal/control"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

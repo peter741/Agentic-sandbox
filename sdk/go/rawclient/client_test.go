@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package rawclient
 
 import (
@@ -15,8 +16,8 @@ import (
 	"google.golang.org/grpc/test/bufconn"
 	"google.golang.org/protobuf/proto"
 
-	"github.com/1996fanrui/agents-sandbox/api/generated/agboxv1"
-	"github.com/1996fanrui/agents-sandbox/internal/control"
+	"github.com/peter741/Agentic-sandbox/api/generated/agboxv1"
+	"github.com/peter741/Agentic-sandbox/internal/control"
 )
 
 func TestDefaultSocketPath(t *testing.T) {

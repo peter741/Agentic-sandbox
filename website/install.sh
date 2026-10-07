@@ -2,9 +2,9 @@
 # Install or upgrade agents-sandbox (agboxd daemon + agbox CLI) from GitHub Releases.
 #
 # Usage:
-#   curl -fsSL https://agents-sandbox.com/install.sh | bash
-#   curl -fsSL https://agents-sandbox.com/install.sh | bash -s -- v0.1.1
-#   curl -fsSL https://agents-sandbox.com/install.sh | bash -s -- --pre
+#   curl -fsSL https://raw.githubusercontent.com/peter741/Agentic-sandbox/main/website/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/peter741/Agentic-sandbox/main/website/install.sh | bash -s -- v0.1.1
+#   curl -fsSL https://raw.githubusercontent.com/peter741/Agentic-sandbox/main/website/install.sh | bash -s -- --pre
 #
 # Examples:
 #   bash install.sh                   # install latest stable release
@@ -201,7 +201,7 @@ detect_install_dir() {
   echo "${HOME}/.local/bin"
 }
 
-GITHUB_REPO="1996fanrui/agents-sandbox"
+GITHUB_REPO="peter741/Agentic-sandbox"
 
 # ---------------------------------------------------------------------------
 # Detect OS and architecture

@@ -126,7 +126,7 @@
 function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 function copyCommands() {
   navigator.clipboard.writeText(
-    'curl -fsSL https://agents-sandbox.com/install.sh | bash\nagbox claude\nagbox codex'
+    'git clone https://github.com/peter741/Agentic-sandbox.git\ncd Agentic-sandbox\ngo build -o agbox ./cmd/agbox\n./agbox preflight --workspace .'
   ).then(function() {
     var btn = document.querySelector('.copy-btn');
     btn.textContent = 'Copied!';

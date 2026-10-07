@@ -10,6 +10,7 @@ import signal
 import subprocess
 import tempfile
 import time
+from unittest.mock import patch
 
 import grpc
 from google.protobuf.any_pb2 import Any
@@ -116,7 +117,10 @@ async def _exercise_public_client(socket_path: Path) -> dict[str, object]:
 
 
 def _new_client(socket_path: str | Path, **kwargs: object) -> AgentsSandboxClient:
-    client = AgentsSandboxClient(**kwargs)
+    # Agentic Sandbox modification: use the explicit test socket even when
+    # the login environment does not define XDG_RUNTIME_DIR.
+    with patch.object(client_module, "_resolve_default_socket_path", return_value=str(socket_path)):
+        client = AgentsSandboxClient(**kwargs)
     client.close()
     client.socket_path = str(socket_path)
     client._rpc_client = client_module.SandboxGrpcClient(

@@ -1,3 +1,4 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package rawclient
 
 import (
@@ -6,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/1996fanrui/agents-sandbox/internal/platform"
+	"github.com/peter741/Agentic-sandbox/internal/platform"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )

@@ -1,10 +1,11 @@
+// Agentic Sandbox derivative: updated repository namespace; see NOTICE.
 package client
 
 import (
 	"context"
 	"fmt"
 
-	"github.com/1996fanrui/agents-sandbox/sdk/go/rawclient"
+	"github.com/peter741/Agentic-sandbox/sdk/go/rawclient"
 )
 
 func (c *Client) waitForSandboxState(

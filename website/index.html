@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>agents-sandbox — Full power for your AI agents. Full safety for the host.</title>
+<title>Agentic Sandbox — Local sandboxes and workspace diagnostics</title>
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400;500;600;700&f[]=clash-display@600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -16,8 +16,8 @@
   <div class="inner">
     <div class="nav-left">
       <a class="nav-logo" href="#">
-        <img class="nav-logo-img" src="logo.svg" alt="agents-sandbox logo" width="60" height="60">
-        agents-sandbox
+        <img class="nav-logo-img" src="logo.svg" alt="Agentic Sandbox logo" width="60" height="60">
+        Agentic Sandbox
       </a>
       <div class="nav-links">
         <a href="#how">How It Works</a>
@@ -25,11 +25,11 @@
         <a href="#security">Security</a>
         <a href="#comparison">vs Codex/Claude</a>
         <a href="#quickstart">Quick Start</a>
-        <a href="https://docs.agents-sandbox.com" target="_blank">Docs</a>
+        <a href="https://github.com/peter741/Agentic-sandbox/tree/main/docs" target="_blank">Docs</a>
       </div>
     </div>
     <div class="nav-right">
-      <a class="gh-link" href="https://github.com/1996fanrui/agents-sandbox" target="_blank">
+      <a class="gh-link" href="https://github.com/peter741/Agentic-sandbox" target="_blank">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         GitHub
       </a>
@@ -53,7 +53,7 @@
   <a href="#features"   onclick="closeMobileMenu()">Features</a>
   <a href="#security"   onclick="closeMobileMenu()">Security</a>
   <a href="#quickstart" onclick="closeMobileMenu()">Quick Start</a>
-  <a href="https://docs.agents-sandbox.com" target="_blank" onclick="closeMobileMenu()">Docs</a>
+  <a href="https://github.com/peter741/Agentic-sandbox/tree/main/docs" target="_blank" onclick="closeMobileMenu()">Docs</a>
   <a href="#oss"        onclick="closeMobileMenu()">Open Source</a>
   <div class="mobile-menu-actions">
     <button class="theme-toggle" id="mobileThemeToggle" aria-label="Toggle theme">
@@ -71,7 +71,7 @@
     <p class="sub">The sandbox runtime that ends the AI agent dilemma &mdash; agents run without restrictions, your host stays completely untouched. Powered by your existing Claude Code &amp; Codex subscriptions, not per-token API billing.</p>
     <div class="hero-buttons">
       <a class="btn-primary" href="#quickstart">Get Started</a>
-      <a class="btn-outline" href="https://github.com/1996fanrui/agents-sandbox" target="_blank">GitHub &rarr;</a>
+      <a class="btn-outline" href="https://github.com/peter741/Agentic-sandbox" target="_blank">GitHub &rarr;</a>
     </div>
 
     <!-- Nested: Host wraps Sandbox -->
@@ -346,18 +346,22 @@
         </div>
         <button class="copy-btn" onclick="copyCommands()">Copy</button>
       </div>
-      <div class="qs-body"><span class="cmd-comment"># Install agents-sandbox (daemon starts automatically)</span>
-<span class="cmd-prefix">$ </span>curl -fsSL https://agents-sandbox.com/install.sh | bash
+      <div class="qs-body"><span class="cmd-comment"># Build Agentic Sandbox (requires Go; review service setup separately)</span>
+<span class="cmd-prefix">$ </span>git clone https://github.com/peter741/Agentic-sandbox.git
+cd Agentic-sandbox
+go build -o agbox ./cmd/agbox
+./agbox preflight --workspace .
 
+<span class="cmd-comment"># Live agents require Docker and a configured agboxd service first.</span>
 <span class="cmd-comment"># Run interactive Claude Code in an isolated sandbox with full permissions.</span>
 <span class="cmd-comment"># Equivalent to running: claude --dangerously-skip-permissions</span>
-<span class="cmd-prefix">$ </span>agbox claude
+<span class="cmd-prefix">$ </span>./agbox claude
 
 <span class="cmd-comment"># Run interactive Codex in an isolated sandbox with full permissions.</span>
 <span class="cmd-comment"># Equivalent to running: codex --dangerously-bypass-approvals-and-sandbox</span>
-<span class="cmd-prefix">$ </span>agbox codex</div>
+<span class="cmd-prefix">$ </span>./agbox codex</div>
     </div>
-    <a href="https://docs.agents-sandbox.com" class="link-arrow">View full documentation &rarr;</a>
+    <a href="https://github.com/peter741/Agentic-sandbox/tree/main/docs" class="link-arrow">View full documentation &rarr;</a>
   </div>
 </section>
 
@@ -372,10 +376,11 @@
       <div><span class="oss-stat-num">Python</span><span class="oss-stat-label">SDK</span></div>
       <div><span class="oss-stat-num">Proto3</span><span class="oss-stat-label">API Protocol</span></div>
     </div>
-    <button class="btn-primary reveal" onclick="window.open('https://github.com/1996fanrui/agents-sandbox','_blank')">Star on GitHub</button>
+    <button class="btn-primary reveal" onclick="window.open('https://github.com/peter741/Agentic-sandbox','_blank')">Star on GitHub</button>
   </div>
 </section>
 
 <script src="script.js"></script>
+<p style="text-align:center;padding:1rem">Agentic Sandbox is an independent derivative of Agents Sandbox. Additions include setup diagnostics and workspace preflight. <a href="https://github.com/peter741/Agentic-sandbox/blob/main/NOTICE">Attribution and license</a>.</p>
 </body>
 </html>
